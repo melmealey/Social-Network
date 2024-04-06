@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
     }
   });
   
-  router.delete('/user/:id', async (req, res) => {
+  router.delete('/api/user/:id', async (req, res) => {
     try {
       const result = await Post.findOneAndDelete({ _id: req.params.id });
   
