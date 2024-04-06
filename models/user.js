@@ -11,7 +11,8 @@ const userSchema = new Schema({
     email: {
       type: String, 
       required: true, 
-      unique: true
+      unique: true,
+      match: [/.+@.+\..+/, "A valid email must be entered!"]
     },
 
     thoughts: [
@@ -22,7 +23,7 @@ const userSchema = new Schema({
 friends: [
   {
       type: Schema.Types.ObjectId,
-      ref: 'Users'
+      ref: 'User'
   },
 ],
 },

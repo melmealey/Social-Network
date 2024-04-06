@@ -22,17 +22,17 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
-  const newThought = new thought({ title: req.body.title, body: req.body.body });
-  // console.log(req.body)
-  newThought.save();
-  if (newThought) {
-    res.status(201).json(newThought);
-  } else {
-    console.log('Uh Oh, something went wrong');
-    res.status(500).json({ error: 'Something went wrong' });
-  }
-});
+router.post('/', async (req, res) => {
+    const thoughtData = req.body;
+  
+    try {
+      const newThought = await thought.create(thoughtData);
+      res.status(201).json(newThought);
+    } catch (err) {
+      console.log('Uh Oh, something went wrong');
+      res.status(500).json({ error: 'Something went wrong' });
+    }
+  });
 
 router.put('/:id', async (req, res) => {
   try {
