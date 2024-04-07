@@ -1,5 +1,4 @@
 const router = require('express').Router()
-// const db = require('../../config/connection')
 const { thought } = require('../../models')
 
 router.get('/', async (req, res) => {
