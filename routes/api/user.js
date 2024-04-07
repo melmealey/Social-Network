@@ -78,7 +78,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Add a friend to a user
-app.post('/api/users/:userId/friends/:friendId', (req, res) => {
+router.post('/:userId/friends/:friendId', (req, res) => {
   user.findOneAndUpdate(
     { _id: req.params.userId },
     { $push: { friends: req.params.friendId } },
@@ -89,13 +89,13 @@ app.post('/api/users/:userId/friends/:friendId', (req, res) => {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
-      res.json(dbUserData);
+      res.status(200).json({ message: dbUserData});
     })
     .catch((err) => res.status(400).json(err));
 });
 
 // Delete a friend from a user
-app.delete('/api/users/:userId/friends/:friendId', (req, res) => {
+router.delete('/:userId/friends/:friendId', (req, res) => {
   user.findOneAndUpdate(
     { _id: req.params.userId },
     { $pull: { friends: req.params.friendId } },

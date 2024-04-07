@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const result = await Post.updateOne({ _id: req.params.id }, req.body)
+    const result = await thought.updateOne({ _id: req.params.id }, req.body)
     res.status(200).json(result)
   } catch (err) {
     console.log(err)
@@ -45,11 +45,11 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const result = await Post.findOneAndDelete({ _id: req.params.id });
+    const result = await thought.findOneAndDelete({ _id: req.params.id });
     res.status(200).json(result);
     console.log(`Deleted: ${result}`);
   } catch (err) {
-    console.log('Uh Oh, something went wrong');
+    console.log(err);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
