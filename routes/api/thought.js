@@ -55,4 +55,39 @@ router.delete('/:id', async (req, res) => {
 });
 
 
+router.post('/:thoughtId/reactions', (req, res) => {
+  thought.findOneAndUpdate(
+    { _id: req.params.thoughtId },
+    { $push: { reactions: req.params.reactions } },
+    { new: true }
+  )
+    .then((dbThoughtData) => {
+      if (!dbThoughtData) {
+        res.status(404).json({ message: 'No thought found with this id' });
+        return;
+      }
+      res.status(200).json({ message: dbThoughtData});
+    })
+    .catch((err) => res.status(400).json(err));
+});
+
+
+router.delete('/:thoughtId/reactions', (req, res) => {
+  thought.findOneAndUpdate(
+    { _id: req.params.thoughtId },
+    { $pull: { friends: req.params.reactions } },
+    { new: true }
+  )
+    .then((dbthoughtData) => {
+      if (!dbthoughtData) {
+        res.status(404).json({ message: 'No thought found with this id' });
+        return;
+      }
+      res.json(dbthoughtData);
+    })
+    .catch((err) => res.status(400).json(err));
+});
+
+
+
 module.exports = router

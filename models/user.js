@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose')
+const {Schema, model } = require('mongoose')
 
 const userSchema = new Schema(
   {
@@ -29,9 +29,9 @@ friends: [{
 {
   toJSON: {
       virtuals: true,
-      getters: true,
+      // getters: true,
   },
-  id: false,
+id: false,
 }
 )
 

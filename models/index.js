@@ -1,4 +1,3 @@
-
 const thought = require('./thought')
 const user = require('./user')
 
