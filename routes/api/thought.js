@@ -56,10 +56,11 @@ router.delete('/:id', async (req, res) => {
 
 
 router.post('/:thoughtId/reactions', (req, res) => {
+  console.log(req)
   thought.findOneAndUpdate(
     { _id: req.params.thoughtId },
-    { $push: { reactions: req.params.reactions } },
-    { new: true }
+    { $addToSet: { reactions: req.body } },
+    { runValidators: true, new: true }
   )
     .then((dbThoughtData) => {
       if (!dbThoughtData) {
@@ -72,11 +73,12 @@ router.post('/:thoughtId/reactions', (req, res) => {
 });
 
 
-router.delete('/:thoughtId/reactions', (req, res) => {
+router.delete('/:thoughtId/reactions/:reactionId', (req, res) => {
+  console.log(req.params)
   thought.findOneAndUpdate(
     { _id: req.params.thoughtId },
-    { $pull: { friends: req.params.reactions } },
-    { new: true }
+    { $pull: { reactions: { reactionId: req.params.reactionId } } },    
+    { runValidators: true, new: true }
   )
     .then((dbthoughtData) => {
       if (!dbthoughtData) {
