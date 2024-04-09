@@ -30,4 +30,4 @@ Please refer to the license in my repo
 
 ## Links
 * Github Repo: https://github.com/melmealey/Social-Network/
-* Insomnia walk-through video Link: 
+* Insomnia walk-through video Link: https://drive.google.com/file/d/1a-FQO86XpaQEnJ3D2Ke0bOwUPgr-sDT3/view
